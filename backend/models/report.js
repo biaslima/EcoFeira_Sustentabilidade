@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const reportSchema = new mongoose.Schema({
+  title: { type: String, required: true },
   type: { type: String, required: true },
   neighborhood: { type: String, required: true },
   location: { type: String, required: true },

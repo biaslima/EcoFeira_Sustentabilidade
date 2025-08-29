@@ -3,16 +3,17 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const reportRoutes = require("./routes/reportRoutes");
+require("dotenv").config();
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT;
 
 // Conexão MongoDB
 mongoose
-  .connect(
-    "mongodb+srv://abslima:KyQHLPhTdgewiuPS@cluster0.q6bd0ft.mongodb.net/EcoFeira?retryWrites=true&w=majority&appName=Cluster0",
-    { useNewUrlParser: true, useUnifiedTopology: true }
-  )
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => console.log("MongoDB conectado!"))
   .catch((err) => console.log(err));
 

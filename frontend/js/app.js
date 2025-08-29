@@ -36,6 +36,7 @@ async function displayReports() {
         (r) => `
         <div class="report-card">
           <div class="report-header">
+          <h2 class="report-title">${r.title}</h2>
             <span class="report-type">${getReportTypeLabel(r.type)}</span>
             <span class="report-date">${formatDate(r.date)}</span>
           </div>
@@ -78,6 +79,7 @@ document.getElementById("reportForm").addEventListener("submit", async (e) => {
   submitBtn.textContent = "Enviando...";
 
   const formData = {
+    title: document.getElementById("title").value,
     type: document.getElementById("reportType").value,
     neighborhood: document.getElementById("neighborhood").value,
     location: document.getElementById("location").value,
@@ -186,6 +188,7 @@ async function displayPendingReports() {
         (r) => `
       <div class="report-card admin-card">
         <div class="report-header">
+        <h2 class="report-title">${r.title}</h2>
           <span class="report-type">${getReportTypeLabel(r.type)}</span>
           <span class="report-date">${formatDate(r.date)}</span>
         </div>
@@ -245,6 +248,7 @@ function renderPendingReports() {
       (r) => `
       <div class="report-card admin-card">
         <div class="report-header">
+        <h2 class="report-title">${r.title}</h2>
           <span class="report-type">${getReportTypeLabel(r.type)}</span>
           <span class="report-date">${formatDate(r.date)}</span>
         </div>
