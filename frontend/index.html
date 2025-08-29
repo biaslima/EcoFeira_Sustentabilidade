@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EcoFeira - Denúncias Ambientais</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <div class="logo">EcoFeira</div>
+          <nav class="nav">
+            <button class="nav-btn active" onclick="showPage('home', event)">
+              Início
+            </button>
+            <button class="nav-btn" onclick="showPage('report', event)">
+              Fazer Denúncia
+            </button>
+            <button class="nav-btn" onclick="showPage('legal', event)">
+              Orientações Legais
+            </button>
+            <button
+              class="nav-btn"
+              onclick="showPage('admin', event)"
+              id="adminBtn"
+              style="display: none"
+            >
+              Administração
+            </button>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <div class="container">
+        <!-- Home Page -->
+        <div id="home" class="page active">
+          <div class="hero">
+            <h1>Proteja o Meio Ambiente de Feira de Santana</h1>
+            <p>
+              Sua denúncia faz a diferença! Ajude a combater problemas
+              ambientais na nossa cidade.
+            </p>
+            <button class="cta-button" onclick="showPage('report', event)">
+              📢 Fazer uma Denúncia
+            </button>
+          </div>
+          <div class="reports-grid" id="reportsGrid">
+            <!-- Relatórios serão inseridos pelo JS -->
+          </div>
+        </div>
+
+        <!-- Report Form Page -->
+        <div id="report" class="page">
+          <h1>Fazer Denúncia Ambiental</h1>
+
+          <div class="guidelines">
+            <h3>📋 Orientações para Denúncia</h3>
+            <ul>
+              <li><strong>Descreva o problema:</strong> Seja específico</li>
+              <li>
+                <strong>Indique a localização:</strong> Bairro e pontos de
+                referência
+              </li>
+              <li>
+                <strong>Não mencione nomes:</strong> Evite citar pessoas ou
+                empresas
+              </li>
+              <li>
+                <strong>Foque no problema:</strong> Descreva a situação
+                ambiental
+              </li>
+              <li><strong>Use fotos:</strong> Imagens ajudam na compreensão</li>
+            </ul>
+          </div>
+
+          <form id="reportForm">
+            <div class="form-group">
+              <label for="title">Título da Denúncia *</label>
+              <input
+                type="text"
+                id="title"
+                required
+                placeholder="Ex: Descarte de lixo próximo ao rio"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="reportType">Tipo de Problema Ambiental *</label>
+              <select
+                id="reportType"
+                required
+                onchange="toggleOtherTypeField()"
+              >
+                <option value="">Selecione o tipo</option>
+                <option value="lixo">Descarte Irregular de Lixo</option>
+                <option value="poluicao-agua">Poluição da Água</option>
+                <option value="poluicao-ar">Poluição do Ar</option>
+                <option value="desmatamento">Desmatamento</option>
+                <option value="queimada">Queimada Irregular</option>
+                <option value="enxurrada">Enxurrada</option>
+                <option value="enchente">Enchente</option>
+                <option value="erosao-solo">Erosão do Solo</option>
+                <option value="assoreamento">Assoreamento de Rios</option>
+                <option value="descarte-quimico">
+                  Descarte Irregular de Produtos Químicos
+                </option>
+                <option value="outros">Outros</option>
+              </select>
+            </div>
+
+            <div class="form-group" id="otherTypeField" style="display: none">
+              <label for="otherTypeDescription"
+                >Especifique o tipo de problema</label
+              >
+              <input
+                type="text"
+                id="otherTypeDescription"
+                placeholder="Descreva o tipo de problema"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="neighborhood">Bairro *</label>
+              <select id="neighborhood" required>
+                <option value="">Selecione o bairro</option>
+                <!-- Lista de bairros de Feira de Santana -->
+                <option value="35º BI">35º BI</option>
+                <option value="Aeroporto">Aeroporto</option>
+                <option value="Área Rural de Feira de Santana">
+                  Área Rural de Feira de Santana
+                </option>
+                <option value="Asa Branca">Asa Branca</option>
+                <option value="Aviário">Aviário</option>
+                <option value="Baraúna">Baraúna</option>
+                <option value="Baraúnas">Baraúnas</option>
+                <option value="Barro Vermelho">Barro Vermelho</option>
+                <option value="Brasília">Brasília</option>
+                <option value="Calumbi">Calumbi</option>
+                <option value="Campo do Gado">Campo do Gado</option>
+                <option value="Campo do Gado Novo">Campo do Gado Novo</option>
+                <option value="Campo Limpo">Campo Limpo</option>
+                <option value="Capuchinhos">Capuchinhos</option>
+                <option value="Caseb">Caseb</option>
+                <option value="Cedin">Cedin</option>
+                <option value="Centro">Centro</option>
+                <option value="Centro Industrial Subaé">
+                  Centro Industrial Subaé
+                </option>
+                <option value="Chácara São Cosme">Chácara São Cosme</option>
+                <option value="Cidade Nova">Cidade Nova</option>
+                <option value="CIS">CIS</option>
+                <option value="Conceição">Conceição</option>
+                <option value="Coronel José Pinto">Coronel José Pinto</option>
+                <option value="Cruzeiro">Cruzeiro</option>
+                <option value="Dner">Dner</option>
+                <option value="Estação Nova">Estação Nova</option>
+                <option value="Eucalipto">Eucalipto</option>
+                <option value="Gabriela">Gabriela</option>
+                <option value="Jardim Acácia">Jardim Acácia</option>
+                <option value="Jardim Cruzeiro">Jardim Cruzeiro</option>
+                <option value="Jardim Recreio">Jardim Recreio</option>
+                <option value="Jardim Santana">Jardim Santana</option>
+                <option value="Kalilândia">Kalilândia</option>
+                <option value="Lagoa Grande">Lagoa Grande</option>
+                <option value="Lagoa Salgada">Lagoa Salgada</option>
+                <option value="Limoeiro">Limoeiro</option>
+                <option value="Mangabeira">Mangabeira</option>
+                <option value="Muchila">Muchila</option>
+                <option value="Muchila I">Muchila I</option>
+                <option value="Muchila II">Muchila II</option>
+                <option value="Najé">Najé</option>
+                <option value="Nova Esperança">Nova Esperança</option>
+                <option value="Novo Horizonte">Novo Horizonte</option>
+                <option value="Olhos D'Água">Olhos D'Água</option>
+                <option value="Pampalona">Pampalona</option>
+                <option value="Papagaio">Papagaio</option>
+                <option value="Parque 5 de Maio">Parque 5 de Maio</option>
+                <option value="Parque Asa Branca">Parque Asa Branca</option>
+                <option value="Parque Brasil">Parque Brasil</option>
+                <option value="Parque Getúlio Vargas">
+                  Parque Getúlio Vargas
+                </option>
+                <option value="Parque Guadalajara">Parque Guadalajara</option>
+                <option value="Parque Ipê">Parque Ipê</option>
+                <option value="Parque José Martins Campelo">
+                  Parque José Martins Campelo
+                </option>
+                <option value="Parque Lagoa Salgada">
+                  Parque Lagoa Salgada
+                </option>
+                <option value="Parque Manoel Matias">
+                  Parque Manoel Matias
+                </option>
+                <option value="Parque Murici">Parque Murici</option>
+                <option value="Parque Panorama">Parque Panorama</option>
+                <option value="Parque Santo Antônio">
+                  Parque Santo Antônio
+                </option>
+                <option value="Parque Sumaré">Parque Sumaré</option>
+                <option value="Pedra do Descanso">Pedra do Descanso</option>
+                <option value="Pedra do Descanso">Pedra do Descanso</option>
+                <option value="Pedra Ferrada">Pedra Ferrada</option>
+                <option value="Penha de França">Penha de França</option>
+                <option value="Pilão">Pilão</option>
+                <option value="Ponto Central">Ponto Central</option>
+                <option value="Presidente Getúlio Vargas">
+                  Presidente Getúlio Vargas
+                </option>
+                <option value="Queimadinha">Queimadinha</option>
+                <option value="Registro">Registro</option>
+                <option value="Rua Nova">Rua Nova</option>
+                <option value="Santa Mônica">Santa Mônica</option>
+                <option value="Santo Antônio dos Prazeres">
+                  Santo Antônio dos Prazeres
+                </option>
+                <option value="São João">São João</option>
+                <option value="Serraria Brasil">Serraria Brasil</option>
+                <option value="Sim">Sim</option>
+                <option value="Sítio Novo">Sítio Novo</option>
+                <option value="Sobradinho">Sobradinho</option>
+                <option value="Subaé">Subaé</option>
+                <option value="Subaé (Tanquinho)">Subaé (Tanquinho)</option>
+                <option value="Tanque da Nação">Tanque da Nação</option>
+                <option value="Tanque do Urubu">Tanque do Urubu</option>
+                <option value="Tomba">Tomba</option>
+                <option value="Vietnam">Vietnam</option>
+                <option value="Vila Gabriela">Vila Gabriela</option>
+                <option value="Vila Subaé">Vila Subaé</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="location">Localização Específica *</label>
+              <input
+                type="text"
+                id="location"
+                required
+                placeholder="Ex: Próximo ao mercado central, Rua das Flores"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="description">Descrição do Problema *</label>
+              <textarea
+                id="description"
+                required
+                placeholder="Descreva detalhadamente o problema ambiental observado..."
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Foto do Problema (opcional)</label>
+              <div
+                class="photo-upload"
+                onclick="document.getElementById('photo').click()"
+              >
+                <input
+                  type="file"
+                  id="photo"
+                  accept="image/*"
+                  onchange="handlePhotoUpload(this)"
+                />
+                <p>📸 Clique para adicionar uma foto</p>
+                <p style="font-size: 0.9rem; color: #666">JPG, PNG até 5MB</p>
+              </div>
+              <div id="photoPreview"></div>
+            </div>
+
+            <button type="submit" class="submit-btn">Enviar Denúncia</button>
+          </form>
+        </div>
+
+        <!-- Legal Page -->
+        <div id="legal" class="page">
+          <h1>Orientações Legais e Ambientais</h1>
+          <div class="legal-section">
+            <h2>🏛️ Legislação Ambiental</h2>
+            <p>
+              Constituição Federal e Lei 9.605/98 garantem proteção ao meio
+              ambiente e punições para condutas lesivas.
+            </p>
+          </div>
+          <div class="legal-section">
+            <h2>🏢 Orientações para Empresas</h2>
+            <p>
+              Empresas devem cumprir a legislação ambiental e podem ser
+              responsabilizadas civil, criminal e administrativamente.
+            </p>
+          </div>
+          <div class="legal-section">
+            <h2>👥 Direitos e Deveres dos Cidadãos</h2>
+            <p>
+              Todo cidadão tem direito a um ambiente saudável e dever de
+              protegê-lo. Participação popular é fundamental.
+            </p>
+          </div>
+        </div>
+
+        <!-- Admin Page -->
+        <div id="admin" class="page">
+          <h1>Painel de Administração</h1>
+          <div id="pendingReports"></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Chamando o JS externo -->
+    <script src="js/app.js"></script>
+  </body>
+</html>
